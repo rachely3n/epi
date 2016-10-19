@@ -10,15 +10,20 @@ def dfs(row, col, board, path, node):
 	or board[row][col].val == 'black':
 		return []
 
+	path.append((row,col))
 	if board[row][col] == node:
 		return path
-	path.append((row,col))
+	
 
 	#basically mark it discovered/make it invalid	
 	board[row][col].val = 'black'
 	
-	return dfs(row - 1, col, board, path, node) or dfs (row + 1, col, board,\
-	path, node) or dfs(row, col - 1, board, path, node) or dfs(row, col + 1, board, path, node) 
+	if dfs(row - 1, col, board, path, node) or dfs (row + 1, col, board,\
+	path, node) or dfs(row, col - 1, board, path, node) or dfs(row, col + 1, board, path, node) :
+		return True 
+	else:
+		path.pop()
+		return False
 	
 def makeMaze(board):
 	rows = len(board)
@@ -37,7 +42,8 @@ def makeMaze(board):
 
 if __name__ == "__main__":
 	
-	board = [[1, 1, 0], [0, 1, 0], [0, 1, 1]]
+	board = [[1, 0, 1], [1, 1, 1], [0, 0, 1]]
 	node_maze = makeMaze(board)
- 	path = dfs(0, 0, node_maze, [],node_maze[2][2])  
+	path = []
+ 	dfs(0, 0, node_maze, path,node_maze[2][2])  
  	print path
