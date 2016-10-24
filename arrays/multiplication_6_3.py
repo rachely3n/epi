@@ -27,8 +27,12 @@ def multiply(a, b):
   for i in range(n_a):
     # fill the result at the right place.
     # result should start wherever a starts
-    res_idx = n_res - i - 1
+    # res_idx = n_a - 1 - i
     for j in range(n_b):
+      # actually i implicitly did the i + j because res_idx 
+      # was subtracting i and then each time in this inner loop subtract 1
+      #
+      res_idx = n_res - i - j - 1
       temp = a[n_a - 1 - i] * b[n_b - 1 - j]
       res[res_idx] += temp 
       if res[res_idx] >= 10: 
@@ -36,8 +40,7 @@ def multiply(a, b):
         carry = temp / 10
         res[res_idx] %= 10 
         res[res_idx - 1] += carry
-      res_idx -= 1
-
+      # res_idx -= 1
   # get rid of leading 0's 
   write_idx = 0
   last_zero = True
