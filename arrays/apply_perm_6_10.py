@@ -1,25 +1,27 @@
 def apply_perm(a, p):
   n = len(a)
 
-  moved = [False] * n 
+  # moved = [False] * n 
   completed = 0
   temp = 0
   idx = 0
   while completed < n:
-    while not moved[idx]:
-
-      if p[idx] != temp: # trying to find end point of the cycle
-        a[p[idx]], a[idx] = a[idx], a[p[idx]]
-      moved[idx] = True 
-
-      idx = p[idx]
-      completed += 1
-      
     for i in xrange(n):
-      if not moved[i]:
+      if p[i] != -1:
         temp = i
         idx = i
         break 
+    while p[idx] != -1:
+
+      if p[idx] != temp: # trying to find end point of the cycle
+        a[p[idx]], a[idx] = a[idx], a[p[idx]]
+      temp_idx = p[idx]
+      p[idx] = -1
+
+      idx = temp_idx
+      completed += 1
+      
+
 
   return a
 
