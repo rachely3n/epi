@@ -20,7 +20,7 @@ def next_perm(A):
   #swap 
   # guaranteed we'll find an element to swap because
   # of termination condition for previous while loop
-  while A[idx] > A[swap_idx]:
+  while idx < n and A[idx] > A[swap_idx]:
     new_spot = idx
     idx += 1
 
@@ -37,4 +37,5 @@ def next_perm(A):
   return A 
 
 print next_perm([3,2,1,0]) == []
-print next_perm([3,1,2,0])
+print next_perm([3,1,2,0]) == [3,2,0,1]
+print next_perm([4,2,5,1,3]) == [4,2,5,3,1]
