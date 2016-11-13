@@ -36,4 +36,3 @@ def print_matrix(d) :
 if __name__ == '__main__':
   ans = min_edit('intention', 'execution')
   print ans 
-  print min_edit('poopman', 'shitman')
